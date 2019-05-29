@@ -9,7 +9,10 @@ pipeline {
 
         stage ('Deploy to Octopus') {
             steps {
-                withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]) {
+                withCredentials([
+                    string(credentialsId: 'APIKey', variable: 'APIKey'),
+                    string(credentialsId: 'OctopusServer', variable: 'OctopusServer')
+                ]) {
                     powershell """
                         Octo push --package AwsLambdaHello0.0.${env.BUILD_NUMBER}.zip --replace-existing --server ${OctopusServer} --apiKey ${APIKey}
                         Octo create-release --project "Aws Lambda Hello" --server ${OctopusServer} --apiKey ${APIKey}
