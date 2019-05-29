@@ -17,7 +17,7 @@ pipeline {
                         Octo push --package AwsLambdaHello0.0.${env.BUILD_NUMBER}.zip --replace-existing --server ${OctopusServer} --apiKey ${APIKey}
                         Octo create-project --name "Aws Lambda Hello" --ignoreIfExists --server ${OctopusServer} --apiKey ${APIKey}
                         Octo create-release --project "Aws Lambda Hello" --server ${OctopusServer} --apiKey ${APIKey}
-                        Octo deploy-release --project "Aws Lambda Hello" --version latest --deployto Integration --server ${OctopusServer} --apiKey ${APIKey}
+                        Octo deploy-release --project "Aws Lambda Hello" --version latest --deployto Dev --server ${OctopusServer} --apiKey ${APIKey}
                     """
                 }
             }
